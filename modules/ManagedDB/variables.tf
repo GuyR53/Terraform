@@ -1,5 +1,5 @@
 variable "resource_group_name" {
-  default = "LoadBalancer"
+  default = "ManagedDB"
   type = string
   description = "Resource group name"
 
@@ -11,7 +11,7 @@ variable "my_region" {
   default     = "eastus"
 }
 
-variable "LoadbalancersubnetID" {
+variable "VirtualNetworkID" {}
 
 
-}
+variable "DBSubnet" {}

@@ -54,7 +54,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.myterraformnic[count.index].id]
   size                  = "Standard_DS2_v2"
-  #availability_set_id   = azurerm_availability_set.avset.id
+  #availability_set_id   = var.AvailablitySetID
   depends_on = [azurerm_network_interface.myterraformnic]
 
   os_disk {
