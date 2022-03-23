@@ -14,10 +14,13 @@ provider "azurerm" {
   features {}
 }
 
-module "VirtualMachine" {
+module "VirtualMachines" {
   source = "./ApplicationServer"
 }
 
+module "LoadBalancer" {
+  source = "./LoadBalancer"
+}
 
 
 
