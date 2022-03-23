@@ -15,11 +15,11 @@ provider "azurerm" {
 }
 
 module "VirtualMachines" {
-  source = "./ApplicationServer"
+  source = "./modules/ApplicationServer"
 }
 
 module "LoadBalancer" {
-  source = "./LoadBalancer"
+  source = "./modules/LoadBalancer"
 }
 
 
