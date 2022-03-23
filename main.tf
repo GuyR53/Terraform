@@ -6,7 +6,7 @@ module "Network" {
 
 module "VirtualMachines" {
   source = "./modules/ApplicationServer"
-  vm_names = ["ApplicationServer-1"]
+  vm_names = ["ApplicationServer-1", "ApplicationServer-2","ApplicationServer-3"]
   AppSubnetID = module.Network.AppSubnet
   NetworkSecurityGroupID = module.Network.SecurityGroupID
 }
