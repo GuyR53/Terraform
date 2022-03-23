@@ -12,7 +12,7 @@ variable "my_region" {
 }
 
 variable "vm_names" {
-  default = ["App1", "App2","App3"]
+  default = ["ApplicationServer-1", "ApplicationServer-2","ApplicationServer-3"]
 }
 
 locals  {

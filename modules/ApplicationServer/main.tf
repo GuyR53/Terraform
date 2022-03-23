@@ -88,8 +88,8 @@ resource "azurerm_network_security_group" "AppServer" {
 
 # Create public IPs
 resource "azurerm_public_ip" "MyVMPublicIP2" {
-  count = 3
-  name                = "myPublicIP${count.index}"
+  count = length(var.vm_names)
+  name                = "myPublicIP-${var.vm_names[count.index]}"
   location            = var.my_region
   resource_group_name = var.resource_group_name
   allocation_method   = "Static"
@@ -97,8 +97,8 @@ resource "azurerm_public_ip" "MyVMPublicIP2" {
 }
 # Create network interface
 resource "azurerm_network_interface" "myterraformnic" {
-  count = 3
-  name                = "myNIC${count.index}"
+  count = length(var.vm_names)
+  name                = "myNIC-${var.vm_names[count.index]}"
   location            = var.my_region
   resource_group_name = var.resource_group_name
   depends_on = [azurerm_resource_group.rg]
@@ -115,7 +115,7 @@ resource "azurerm_network_interface" "myterraformnic" {
 
 # Connect the security group to the network interface
 resource "azurerm_network_interface_security_group_association" "Connected2" {
-  count = 3
+  count = length(var.vm_names)
   network_interface_id      = azurerm_network_interface.myterraformnic[count.index].id
   network_security_group_id = azurerm_network_security_group.AppServer.id
   depends_on = [azurerm_network_interface.myterraformnic,azurerm_network_security_group.AppServer]
@@ -124,16 +124,17 @@ resource "azurerm_network_interface_security_group_association" "Connected2" {
 
 # Create virtual machine
 resource "azurerm_linux_virtual_machine" "myterraformvm" {
-  count = 3
-  name                  = "ApplicationServer${count.index}"
+  count = length(var.vm_names)
+  name                  = "${var.vm_names[count.index]}"
   location              = var.my_region
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.myterraformnic[count.index].id]
   size                  = "Standard_DS2_v2"
+  #availability_set_id   = azurerm_availability_set.avset.id
   depends_on = [azurerm_network_interface.myterraformnic]
 
   os_disk {
-    name                 = "ApplicationServer${count.index}"
+    name                 = "Disk-${var.vm_names[count.index]}"
     caching              = "ReadWrite"
     storage_account_type = "StandardSSD_LRS"
   }
@@ -148,7 +149,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   computer_name                   = "myvm"
   admin_username                  = "azureuser"
   disable_password_authentication = false
-  admin_password = "1234kdashdiwdS23@"
+  admin_password = file("${path.module}/password.txt")
 
 
 }
