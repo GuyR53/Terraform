@@ -7,9 +7,9 @@
 *.log
 
 # Directories
-.terraform/
+.terraform
 .vagrant/
-
+.idea
 # SSH Keys
 *.pem
 
