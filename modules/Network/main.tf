@@ -29,7 +29,7 @@ resource "azurerm_network_security_group" "AppServer" {
   name                = "myNetworkSecurityGroupApp"
   location            = var.my_region
   resource_group_name = var.resource_group_name
-  depends_on = [azurerm_resource_group.rg]
+  depends_on = [azurerm_resource_group.rg,azurerm_subnet.myterraformsubnet]
 
   security_rule {
     name                       = "SSH"
@@ -86,7 +86,7 @@ resource "azurerm_network_security_group" "DBServer" {
   name                = "myNetworkSecurityGroupDB"
   location            = var.my_region
   resource_group_name = var.resource_group_name
-  depends_on = [azurerm_resource_group.rg]
+  depends_on = [azurerm_resource_group.rg,azurerm_subnet.myterraformsubnet2]
 
   security_rule {
     name                       = "SSH"

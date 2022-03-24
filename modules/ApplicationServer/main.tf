@@ -7,9 +7,15 @@ resource "azurerm_resource_group" "rg" {
 
 
 
-# Resources for each virtual machine:
-
-
+# Resources for each virtual machines:
+# Public IP for the configuration machine only
+resource "azurerm_public_ip" "public_ip" {
+  name                = "ConfigurationMachine"
+  resource_group_name = var.resource_group_name
+  location            = var.my_region
+  allocation_method   = "Static"
+  depends_on = [azurerm_resource_group.rg]
+}
 
 
 # Create network interface
@@ -18,7 +24,7 @@ resource "azurerm_network_interface" "myterraformnic" {
   name                = "myNIC-${var.vm_names[count.index]}"
   location            = var.my_region
   resource_group_name = var.resource_group_name
-  depends_on = [azurerm_resource_group.rg]
+  depends_on = [azurerm_resource_group.rg,azurerm_public_ip.public_ip]
 
 
 
@@ -26,6 +32,7 @@ resource "azurerm_network_interface" "myterraformnic" {
     name                          = "myNicConfiguration"
     subnet_id                     = var.AppSubnetID
     private_ip_address_allocation = "Dynamic"
+    public_ip_address_id = count.index == local.MachinewithIP ? azurerm_public_ip.public_ip.id : null
 
   }
 }
@@ -70,3 +77,12 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
 
 
 }
+
+
+
+
+
+
+
+
+

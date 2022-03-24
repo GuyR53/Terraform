@@ -1,9 +1,4 @@
-variable "resource_group_name" {
-  default = "Bootcamp2"
-  type = string
-  description = "Resource group name"
 
-}
 variable "my_region" {
   description = "Value of the region I use"
   type        = string

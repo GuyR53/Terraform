@@ -20,3 +20,7 @@ variable "AppSubnetID" {
 variable "NetworkSecurityGroupID" {
 
 }
+
+locals {
+  MachinewithIP="${length(var.vm_names)-1}"
+}

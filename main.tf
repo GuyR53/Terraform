@@ -10,7 +10,9 @@ module "Network" {
 
 module "VirtualMachines" {
   source = "./modules/ApplicationServer"
-  vm_names = ["ApplicationServer-1", "ApplicationServer-2","ApplicationServer-3"]
+  # Creating virtual machines with the names and numbers as we pass in the list, the last machine is configuration machine with public IP
+  vm_names = ["ApplicationServer-1", "ApplicationServer-2","ApplicationServer-3","ConfigurationMachine"]
+
   AppSubnetID = module.Network.AppSubnet
   NetworkSecurityGroupID = module.Network.SecurityGroupID
 }

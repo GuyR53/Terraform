@@ -72,3 +72,13 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
   backend_port                   = 8080
   frontend_ip_configuration_name = "Front-endIP"
 }
+
+
+
+
+
+
+
+
+
+
