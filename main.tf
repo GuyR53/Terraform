@@ -2,6 +2,10 @@
 
 module "Network" {
   source = "./modules/Network"
+  # Sending the private IP of appservers for defining the rules at DB network security group
+  privateipaddrres1 = module.VirtualMachines.networkinterfaceprivateipadrress1
+  privateipaddrres2 = module.VirtualMachines.networkinterfaceprivateipadrress2
+  privateipaddrres3 = module.VirtualMachines.networkinterfaceprivateipadrress3
 }
 
 module "VirtualMachines" {

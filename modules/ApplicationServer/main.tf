@@ -10,15 +10,7 @@ resource "azurerm_resource_group" "rg" {
 # Resources for each virtual machine:
 
 
-# Create public IPs
-#resource "azurerm_public_ip" "MyVMPublicIP2" {
-#  count = length(var.vm_names)
-#  name                = "myPublicIP-${var.vm_names[count.index]}"
-#  location            = var.my_region
-#  resource_group_name = var.resource_group_name
-#  allocation_method   = "Static"
-#  depends_on = [azurerm_resource_group.rg]
-#}
+
 
 # Create network interface
 resource "azurerm_network_interface" "myterraformnic" {
@@ -55,7 +47,6 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.myterraformnic[count.index].id]
   size                  = "Standard_DS2_v2"
-  #availability_set_id   = var.AvailablitySetID
   depends_on = [azurerm_network_interface.myterraformnic]
 
 

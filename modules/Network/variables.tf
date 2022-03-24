@@ -10,3 +10,9 @@ variable "my_region" {
   type        = string
   default     = "eastus"
 }
+
+variable "privateipaddrres1" {}
+
+variable "privateipaddrres2" {}
+
+variable "privateipaddrres3" {}
