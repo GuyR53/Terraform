@@ -11,14 +11,15 @@ resource "azurerm_resource_group" "rg" {
 
 
 # Create public IPs
-resource "azurerm_public_ip" "MyVMPublicIP2" {
-  count = length(var.vm_names)
-  name                = "myPublicIP-${var.vm_names[count.index]}"
-  location            = var.my_region
-  resource_group_name = var.resource_group_name
-  allocation_method   = "Static"
-  depends_on = [azurerm_resource_group.rg]
-}
+#resource "azurerm_public_ip" "MyVMPublicIP2" {
+#  count = length(var.vm_names)
+#  name                = "myPublicIP-${var.vm_names[count.index]}"
+#  location            = var.my_region
+#  resource_group_name = var.resource_group_name
+#  allocation_method   = "Static"
+#  depends_on = [azurerm_resource_group.rg]
+#}
+
 # Create network interface
 resource "azurerm_network_interface" "myterraformnic" {
   count = length(var.vm_names)
@@ -33,7 +34,7 @@ resource "azurerm_network_interface" "myterraformnic" {
     name                          = "myNicConfiguration"
     subnet_id                     = var.AppSubnetID
     private_ip_address_allocation = "Dynamic"
-    public_ip_address_id          = azurerm_public_ip.MyVMPublicIP2[count.index].id
+
   }
 }
 
@@ -57,6 +58,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   #availability_set_id   = var.AvailablitySetID
   depends_on = [azurerm_network_interface.myterraformnic]
 
+
   os_disk {
     name                 = "Disk-${var.vm_names[count.index]}"
     caching              = "ReadWrite"
@@ -71,7 +73,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   }
 
   computer_name                   = "myvm"
-  admin_username                  = "azureuser"
+  admin_username                  = "${var.vm_names[count.index]}"
   disable_password_authentication = false
   admin_password = file("${path.module}/password.txt")
 

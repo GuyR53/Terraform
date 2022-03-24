@@ -14,6 +14,10 @@ module "VirtualMachines" {
 module "LoadBalancer" {
   source = "./modules/LoadBalancer"
   LoadbalancersubnetID = module.Network.AppSubnet
+  VirtualNetworkID = module.Network.NetworkID
+  privateipaddrres1 = module.VirtualMachines.networkinterfaceprivateipadrress1
+  privateipaddrres2 = module.VirtualMachines.networkinterfaceprivateipadrress2
+  privateipaddrres3 = module.VirtualMachines.networkinterfaceprivateipadrress3
 }
 
 module "ManagedDB" {

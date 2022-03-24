@@ -13,5 +13,11 @@ variable "my_region" {
 
 variable "LoadbalancersubnetID" {
 
-
 }
+variable "VirtualNetworkID" {}
+
+variable "privateipaddrres1" {}
+
+variable "privateipaddrres2" {}
+
+variable "privateipaddrres3" {}
