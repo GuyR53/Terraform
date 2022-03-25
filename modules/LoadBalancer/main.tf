@@ -80,6 +80,7 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
   protocol                       = "Tcp"
   frontend_port                  = 8080
   backend_port                   = 8080
+   backend_address_pool_ids = [azurerm_lb_backend_address_pool.BackendAdrress.id]
   frontend_ip_configuration_name = "Front-endIP"
 }
 

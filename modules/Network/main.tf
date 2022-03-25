@@ -99,17 +99,7 @@ resource "azurerm_network_security_group" "DBServer" {
   resource_group_name = var.resource_group_name
   depends_on = [azurerm_resource_group.rg,azurerm_subnet.myterraformsubnet2]
 
-  security_rule {
-    name                       = "SSH_App1"
-    priority                   = 300
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "22"
-    source_address_prefix      = var.privateipaddrres1
-    destination_address_prefix = "*"
-  }
+
    security_rule {
     name                       = "Port_5432_App1"
     priority                   = 310

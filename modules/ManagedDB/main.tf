@@ -7,7 +7,7 @@ resource "azurerm_resource_group" "rg" {
     type = "PostgresDataBaseRelated"
   }
 }
-
+# Create Managed DB
 resource "azurerm_private_dns_zone" "guy" {
   name                = "guy.postgres.database.azure.com"
   resource_group_name = var.resource_group_name
@@ -31,12 +31,10 @@ resource "azurerm_postgresql_flexible_server" "guy" {
   version                = "12"
   delegated_subnet_id    = var.DBSubnet
   private_dns_zone_id    = azurerm_private_dns_zone.guy.id
-  administrator_login    = "psqladmin"
+  administrator_login    = "postgres"
   administrator_password = file("${path.module}/password.txt")
   zone                   = "1"
-
   storage_mb = 32768
-
   sku_name   = "B_Standard_B1ms"
   depends_on = [azurerm_private_dns_zone_virtual_network_link.guy]
 
