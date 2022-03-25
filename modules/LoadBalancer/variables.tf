@@ -12,12 +12,21 @@ variable "my_region" {
 }
 
 variable "LoadbalancersubnetID" {
+  description = "Load balancer subnetID"
 
 }
-variable "VirtualNetworkID" {}
+variable "VirtualNetworkID" {
+  description = "Virtual network ID"
+}
 
-variable "privateipaddrres1" {}
+variable "privateipaddrres1" {
+  description = "The privateIP for the virtual machine that is first in the list"
+}
 
-variable "privateipaddrres2" {}
+variable "privateipaddrres2" {
+    description = "The privateIP for the virtual machine that is second in the list"
+}
 
-variable "privateipaddrres3" {}
+variable "privateipaddrres3" {
+    description = "The privateIP for the virtual machine that is third in the list"
+}

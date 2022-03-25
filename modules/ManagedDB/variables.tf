@@ -11,7 +11,11 @@ variable "my_region" {
   default     = "eastus"
 }
 
-variable "VirtualNetworkID" {}
+variable "VirtualNetworkID" {
+   description = "Virtual network ID"
+}
 
 
-variable "DBSubnet" {}
+variable "DBSubnet" {
+  description = "Database subnetID (private subnet)"
+}

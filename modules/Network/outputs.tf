@@ -6,7 +6,7 @@ output "DBSubnet" {
   value = azurerm_subnet.myterraformsubnet2.id
 }
 
-output "SecurityGroupID" {
+output "AppSecurityGroupID" {
   value = azurerm_network_security_group.AppServer.id
 }
 

@@ -12,15 +12,14 @@ variable "my_region" {
 }
 
 variable "vm_names" {
+  type = list
+  description = "List of machines to create with their names"
 }
 variable "AppSubnetID" {
-
+    description = "Application subnetID"
 }
 
-variable "NetworkSecurityGroupID" {
-
-}
-
+# Getting the index of the configuration machine to make publicIPAddress
 locals {
   MachinewithIP="${length(var.vm_names)-1}"
 }

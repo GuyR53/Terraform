@@ -7,7 +7,8 @@ resource "azurerm_resource_group" "rg" {
 
 
 
-# Resources for each virtual machines:
+
+
 # Public IP for the configuration machine only
 resource "azurerm_public_ip" "public_ip" {
   name                = "ConfigurationMachine"
@@ -17,7 +18,7 @@ resource "azurerm_public_ip" "public_ip" {
   depends_on = [azurerm_resource_group.rg]
 }
 
-
+# Resources for each virtual machines:
 # Create network interface
 resource "azurerm_network_interface" "myterraformnic" {
   count = length(var.vm_names)
@@ -32,17 +33,10 @@ resource "azurerm_network_interface" "myterraformnic" {
     name                          = "myNicConfiguration"
     subnet_id                     = var.AppSubnetID
     private_ip_address_allocation = "Dynamic"
+    # PublicIP only for the configuration machine (the last machine on the list)
     public_ip_address_id = count.index == local.MachinewithIP ? azurerm_public_ip.public_ip.id : null
 
   }
-}
-
-# Connect the security group to the network interface
-resource "azurerm_network_interface_security_group_association" "Connected2" {
-  count = length(var.vm_names)
-  network_interface_id      = azurerm_network_interface.myterraformnic[count.index].id
-  network_security_group_id = var.NetworkSecurityGroupID
-  depends_on = [azurerm_network_interface.myterraformnic]
 }
 
 
