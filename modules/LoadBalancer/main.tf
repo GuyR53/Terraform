@@ -2,7 +2,10 @@
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
   location = var.my_region
+   tags = {
+    "type"="LoadBalancerRelated"}
 }
+
 
 resource "azurerm_public_ip" "LoadBalancerIP" {
   name                = "PublicIPForLB"
@@ -11,6 +14,7 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
   sku = "Standard"
   allocation_method   = "Static"
   depends_on = [azurerm_resource_group.rg]
+
 }
 
  resource "azurerm_lb" "LoadBalancer" {
@@ -24,12 +28,14 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
     name                 = "Front-endIP"
     public_ip_address_id = azurerm_public_ip.LoadBalancerIP.id
   }
+
 }
 
  resource "azurerm_lb_backend_address_pool" "BackendAdrress" {
   loadbalancer_id = azurerm_lb.LoadBalancer.id
   name            = "BackEndAddressPool"
   depends_on = [azurerm_lb.LoadBalancer]
+
 }
 
  resource "azurerm_lb_backend_address_pool_address" "Application1" {
@@ -38,6 +44,7 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
   virtual_network_id      = var.VirtualNetworkID
   ip_address              = var.privateipaddrres1
    depends_on = [azurerm_lb_backend_address_pool.BackendAdrress]
+
 }
 
  resource "azurerm_lb_backend_address_pool_address" "Application2" {
@@ -46,6 +53,7 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
   virtual_network_id      = var.VirtualNetworkID
   ip_address              = var.privateipaddrres2
    depends_on = [azurerm_lb_backend_address_pool.BackendAdrress]
+
 }
 
   resource "azurerm_lb_backend_address_pool_address" "Application3" {
@@ -54,6 +62,7 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
   virtual_network_id      = var.VirtualNetworkID
   ip_address              = var.privateipaddrres3
    depends_on = [azurerm_lb_backend_address_pool.BackendAdrress]
+
 }
 
  resource "azurerm_lb_probe" "ProbeA" {
@@ -61,6 +70,7 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
   loadbalancer_id     = azurerm_lb.LoadBalancer.id
   name                = "ProbeA"
   port                = 8080
+
 }
 
  resource "azurerm_lb_rule" "RuleA" {

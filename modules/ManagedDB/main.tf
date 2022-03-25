@@ -3,12 +3,16 @@
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
   location = var.my_region
+    tags = {
+    type = "PostgresDataBaseRelated"
+  }
 }
 
 resource "azurerm_private_dns_zone" "guy" {
   name                = "guy.postgres.database.azure.com"
   resource_group_name = var.resource_group_name
   depends_on = [azurerm_resource_group.rg]
+
 }
 
 resource "azurerm_private_dns_zone_virtual_network_link" "guy" {
@@ -17,6 +21,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "guy" {
   virtual_network_id    = var.VirtualNetworkID
   resource_group_name   = var.resource_group_name
   depends_on = [azurerm_resource_group.rg]
+
 }
 
 resource "azurerm_postgresql_flexible_server" "guy" {
@@ -34,5 +39,6 @@ resource "azurerm_postgresql_flexible_server" "guy" {
 
   sku_name   = "B_Standard_B1ms"
   depends_on = [azurerm_private_dns_zone_virtual_network_link.guy]
+
 
 }

@@ -22,3 +22,4 @@ variable "privateipaddrres2" {
 variable "privateipaddrres3" {
   description = "The privateIP for the virtual machine that is third in the list"
 }
+

@@ -3,6 +3,9 @@
 resource "azurerm_resource_group" "rg" {
   name     = var.resource_group_name
   location = var.my_region
+     tags = {
+    type = "VirtualMachineRelated"
+  }
 }
 
 
@@ -16,6 +19,7 @@ resource "azurerm_public_ip" "public_ip" {
   location            = var.my_region
   allocation_method   = "Static"
   depends_on = [azurerm_resource_group.rg]
+
 }
 
 # Resources for each virtual machines:
@@ -37,6 +41,7 @@ resource "azurerm_network_interface" "myterraformnic" {
     public_ip_address_id = count.index == local.MachinewithIP ? azurerm_public_ip.public_ip.id : null
 
   }
+
 }
 
 
