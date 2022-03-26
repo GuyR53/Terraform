@@ -4,3 +4,5 @@ variable "my_region" {
   type        = string
   default     = "eastus"
 }
+
+

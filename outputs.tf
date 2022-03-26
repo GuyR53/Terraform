@@ -1,4 +1,4 @@
 output "Password" {
-  value = module.VirtualMachines.Password
+  value = module.ScaleSet.VMSS_Password
   sensitive = true
 }

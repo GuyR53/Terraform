@@ -101,38 +101,14 @@ resource "azurerm_network_security_group" "DBServer" {
 
 
    security_rule {
-    name                       = "Port_5432_App1"
+    name                       = "Port_5432_ScaleSet"
     priority                   = 310
     direction                  = "Inbound"
     access                     = "Allow"
     protocol                   = "Tcp"
     source_port_range          = "*"
     destination_port_range     = "5432"
-    source_address_prefix      = var.privateipaddrres1
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "Port_5432_App2"
-    priority                   = 320
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "5432"
-    source_address_prefix      = var.privateipaddrres2
-    destination_address_prefix = "*"
-  }
-
-  security_rule {
-    name                       = "Port_5432_App3"
-    priority                   = 330
-    direction                  = "Inbound"
-    access                     = "Allow"
-    protocol                   = "Tcp"
-    source_port_range          = "*"
-    destination_port_range     = "5432"
-    source_address_prefix      = var.privateipaddrres3
+    source_address_prefix      = azurerm_subnet.myterraformsubnet.address_prefix
     destination_address_prefix = "*"
   }
 

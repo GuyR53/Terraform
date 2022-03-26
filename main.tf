@@ -1,33 +1,30 @@
 
-
+# Creates the network
 module "Network" {
   source = "./modules/Network"
-  # Passing the private IP of appservers for defining the rules at DB network security group
-  privateipaddrres1 = module.VirtualMachines.networkinterfaceprivateipadrress1
-  privateipaddrres2 = module.VirtualMachines.networkinterfaceprivateipadrress2
-  privateipaddrres3 = module.VirtualMachines.networkinterfaceprivateipadrress3
 }
 
+# Terraform module that reuse the code that creates virtual machines without scaleset
 module "VirtualMachines" {
   source = "./modules/ApplicationServer"
   # Creating virtual machines with the names and numbers as we pass in the list, the last machine is configuration machine with public IP
-  vm_names = ["ApplicationServer-1", "ApplicationServer-2","ApplicationServer-3","ConfigurationMachine"]
+  vm_names = ["ApplicationServer-1", "ConfigurationMachine"]
   # Passing the app subnetID, creating the machines in the right subnet
   AppSubnetID = module.Network.AppSubnet
 }
 
+# Creates Load Balancer
 module "LoadBalancer" {
   source = "./modules/LoadBalancer"
   # Passing the Application subnet
   LoadbalancersubnetID = module.Network.AppSubnet
   # Passing the virtual networkID
   VirtualNetworkID = module.Network.NetworkID
-  # Passing the private IP of appservers to define them in the backendpoll
-  privateipaddrres1 = module.VirtualMachines.networkinterfaceprivateipadrress1
-  privateipaddrres2 = module.VirtualMachines.networkinterfaceprivateipadrress2
-  privateipaddrres3 = module.VirtualMachines.networkinterfaceprivateipadrress3
+
+
 }
 
+# Create ManagedDB
 module "ManagedDB" {
   source = "./modules/ManagedDB"
   # Passing the networkID for the managed dbserver
@@ -35,6 +32,17 @@ module "ManagedDB" {
   # Passing the subnet (private) for the managed dbserver
   DBSubnet = module.Network.DBSubnet
 }
+
+#  creates VMSS
+module "ScaleSet" {
+  source = "./modules/ScaleSet"
+  # Passing the App subnet id
+  AppSubnetID = module.Network.AppSubnet
+  # Passing the load balancer backend address pool id
+  lb_backend_address_pool_id = module.LoadBalancer.lb_backend_address_pool_id
+}
+
+
 
 
 
