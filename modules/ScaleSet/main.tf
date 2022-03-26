@@ -20,7 +20,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "main" {
   disable_password_authentication = false
   instances = 2
     # Installing into machines the app and dependencies
-  custom_data = filebase64("${path.module}/PrepareMachine.sh")
+ # custom_data = filebase64("${path.module}/PrepareMachine.sh")
   depends_on = [azurerm_resource_group.rg]
 
   source_image_reference {
@@ -66,8 +66,8 @@ resource "azurerm_monitor_autoscale_setting" "main" {
     name = "AutoScale"
 
     capacity {
-      default = 3
-      minimum = 1
+      default = 2
+      minimum = 2
       maximum = 5
     }
 

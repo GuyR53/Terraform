@@ -50,7 +50,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   network_interface_ids = [azurerm_network_interface.myterraformnic[count.index].id]
   size                  = "Standard_DS2_v2"
   # Installing into machines the app and dependencies
-  custom_data = filebase64("${path.module}/PrepareMachine.sh")
+  #custom_data = filebase64("${path.module}/PrepareMachine.sh")
   depends_on = [azurerm_network_interface.myterraformnic]
 
 
