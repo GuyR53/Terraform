@@ -16,7 +16,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "main" {
   location                        = var.my_region
   sku                             = "Standard_F2"
   admin_username                  = "adminuser"
-  admin_password                  = file("${path.module}/password.txt")
+  admin_password                  = var.Password
   disable_password_authentication = false
   instances = 2
     # Installing into machines the app and dependencies

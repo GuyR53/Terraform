@@ -19,6 +19,11 @@ variable "AppSubnetID" {
     description = "Application subnetID"
 }
 
+variable "Password" {
+  type = string
+  description = "Password for vm"
+
+}
 # Getting the index of the configuration machine to make publicIPAddress
 locals {
   MachinewithIP="${length(var.vm_names)-1}"

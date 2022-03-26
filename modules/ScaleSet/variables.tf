@@ -18,3 +18,9 @@ variable "AppSubnetID" {
 variable "lb_backend_address_pool_id" {
   description = "Load Balancer address pool ID for vmss"
 }
+
+variable "Password" {
+  type = string
+  description = "Password for vm"
+
+}

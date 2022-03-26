@@ -70,7 +70,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   computer_name                   = "myvm"
   admin_username                  = "${var.vm_names[count.index]}"
   disable_password_authentication = false
-  admin_password = file("${path.module}/password.txt")
+  admin_password = var.Password
 
 
 
