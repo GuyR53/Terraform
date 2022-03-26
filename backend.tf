@@ -1,3 +1,4 @@
+# Use a Terraform backend to store the Terraform state in Azure Blob Storage
 terraform {
     backend "azurerm" {
         resource_group_name  = "tfstate"

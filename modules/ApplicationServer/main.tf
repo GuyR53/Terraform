@@ -8,10 +8,6 @@ resource "azurerm_resource_group" "rg" {
   }
 }
 
-
-
-
-
 # Public IP for the configuration machine only
 resource "azurerm_public_ip" "public_ip" {
   name                = "ConfigurationMachine"
@@ -53,6 +49,8 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   resource_group_name   = var.resource_group_name
   network_interface_ids = [azurerm_network_interface.myterraformnic[count.index].id]
   size                  = "Standard_DS2_v2"
+  # Installing into machines the app and dependencies
+  custom_data = filebase64("${path.module}/PrepareMachine.sh")
   depends_on = [azurerm_network_interface.myterraformnic]
 
 
@@ -73,6 +71,7 @@ resource "azurerm_linux_virtual_machine" "myterraformvm" {
   admin_username                  = "${var.vm_names[count.index]}"
   disable_password_authentication = false
   admin_password = file("${path.module}/password.txt")
+
 
 
 }
