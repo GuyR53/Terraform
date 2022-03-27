@@ -30,16 +30,12 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_AppSubnetID"></a> [AppSubnetID](#input\_AppSubnetID) | Application subnetID | `any` | n/a | yes |
+| <a name="input_Password"></a> [Password](#input\_Password) | Password for vm | `string` | `""` | no |
 | <a name="input_my_region"></a> [my\_region](#input\_my\_region) | Value of the region I use | `string` | `"eastus"` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Resource group name | `string` | `"AppServer"` | no |
 | <a name="input_vm_names"></a> [vm\_names](#input\_vm\_names) | List of machines to create with their names | `list` | n/a | yes |
 
 ## Outputs
 
-| Name | Description |
-|------|-------------|
-| <a name="output_Password"></a> [Password](#output\_Password) | n/a |
-| <a name="output_networkinterfaceprivateipadrress1"></a> [networkinterfaceprivateipadrress1](#output\_networkinterfaceprivateipadrress1) | n/a |
-| <a name="output_networkinterfaceprivateipadrress2"></a> [networkinterfaceprivateipadrress2](#output\_networkinterfaceprivateipadrress2) | n/a |
-| <a name="output_networkinterfaceprivateipadrress3"></a> [networkinterfaceprivateipadrress3](#output\_networkinterfaceprivateipadrress3) | n/a |
+No outputs.
 <!-- END_TF_DOCS -->

@@ -30,6 +30,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_DBSubnet"></a> [DBSubnet](#input\_DBSubnet) | Database subnetID (private subnet) | `any` | n/a | yes |
+| <a name="input_Password"></a> [Password](#input\_Password) | Password for db | `string` | `""` | no |
 | <a name="input_VirtualNetworkID"></a> [VirtualNetworkID](#input\_VirtualNetworkID) | Virtual network ID | `any` | n/a | yes |
 | <a name="input_my_region"></a> [my\_region](#input\_my\_region) | Value of the region I use | `string` | `"eastus"` | no |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Resource group name | `string` | `"ManagedDB"` | no |

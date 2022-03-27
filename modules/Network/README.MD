@@ -34,9 +34,6 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_my_region"></a> [my\_region](#input\_my\_region) | Value of the region I use | `string` | `"eastus"` | no |
-| <a name="input_privateipaddrres1"></a> [privateipaddrres1](#input\_privateipaddrres1) | The privateIP for the virtual machine that is first in the list | `any` | n/a | yes |
-| <a name="input_privateipaddrres2"></a> [privateipaddrres2](#input\_privateipaddrres2) | The privateIP for the virtual machine that is second in the list | `any` | n/a | yes |
-| <a name="input_privateipaddrres3"></a> [privateipaddrres3](#input\_privateipaddrres3) | The privateIP for the virtual machine that is third in the list | `any` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Resource group name | `string` | `"Network"` | no |
 
 ## Outputs
