@@ -1,5 +1,12 @@
 # TerraformWeek5
 
+### Run the infrastructure from the root module which will use the sub modules.
+
+### You can use *.tfvars file with variable Password to run it.
+
+
+
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
