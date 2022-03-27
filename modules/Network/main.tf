@@ -112,6 +112,18 @@ resource "azurerm_network_security_group" "DBServer" {
     destination_address_prefix = "*"
   }
 
+    security_rule {
+    name                       = "SSH_DB"
+    priority                   = 320
+    direction                  = "Inbound"
+    access                     = "Allow"
+    protocol                   = "Tcp"
+    source_port_range          = "*"
+    destination_port_range     = "22"
+    source_address_prefix      = var.SSH_MachineIPDB
+    destination_address_prefix = "*"
+  }
+
   security_rule {
     name                       = "DenyVnetInBound"
     priority                   = 340
