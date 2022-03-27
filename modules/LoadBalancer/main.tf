@@ -6,7 +6,7 @@ resource "azurerm_resource_group" "rg" {
     "type"="LoadBalancerRelated"}
 }
 
-
+# Create load balancerIP
 resource "azurerm_public_ip" "LoadBalancerIP" {
   name                = "PublicIPForLB"
   location            = var.my_region
@@ -17,6 +17,7 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
 
 }
 
+ # Create load balancer
  resource "azurerm_lb" "LoadBalancer" {
   name                = "LoadBalancer"
   location            = var.my_region
@@ -31,6 +32,7 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
 
 }
 
+ # Create backend addrress pool
  resource "azurerm_lb_backend_address_pool" "BackendAdrress" {
   loadbalancer_id = azurerm_lb.LoadBalancer.id
   name            = "BackEndAddressPool"
@@ -41,7 +43,7 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
 
 
 
-
+# Create probe
  resource "azurerm_lb_probe" "ProbeA" {
   resource_group_name = var.resource_group_name
   loadbalancer_id     = azurerm_lb.LoadBalancer.id
@@ -50,6 +52,7 @@ resource "azurerm_public_ip" "LoadBalancerIP" {
 
 }
 
+ # Create rule
  resource "azurerm_lb_rule" "RuleA" {
   resource_group_name            = var.resource_group_name
   loadbalancer_id                = azurerm_lb.LoadBalancer.id

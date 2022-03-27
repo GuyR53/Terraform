@@ -22,6 +22,7 @@ variable "AppSubnetID" {
 variable "Password" {
   type = string
   description = "Password for vm"
+  default = ""
 
 }
 # Getting the index of the configuration machine to make publicIPAddress

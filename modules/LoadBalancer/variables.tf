@@ -11,14 +11,5 @@ variable "my_region" {
   default     = "eastus"
 }
 
-variable "LoadbalancersubnetID" {
-  description = "Load balancer subnetID"
 
-}
-variable "VirtualNetworkID" {
-  description = "Virtual network ID"
-}
 
-#variable "ScaleSetPrivateIP" {
-#  description = "Scale Set PrivateIP for backend pool"
-#}

@@ -19,3 +19,10 @@ variable "VirtualNetworkID" {
 variable "DBSubnet" {
   description = "Database subnetID (private subnet)"
 }
+
+variable "Password" {
+  type = string
+  description = "Password for db"
+  default = ""
+
+}

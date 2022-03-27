@@ -22,5 +22,6 @@ variable "lb_backend_address_pool_id" {
 variable "Password" {
   type = string
   description = "Password for vm"
+  default = ""
 
 }

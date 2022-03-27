@@ -16,10 +16,7 @@ module "VirtualMachines" {
 # Creates Load Balancer
 module "LoadBalancer" {
   source = "./modules/LoadBalancer"
-  # Passing the Application subnet
-  LoadbalancersubnetID = module.Network.AppSubnet
-  # Passing the virtual networkID
-  VirtualNetworkID = module.Network.NetworkID
+
 
 
 }

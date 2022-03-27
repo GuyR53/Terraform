@@ -15,6 +15,7 @@ resource "azurerm_private_dns_zone" "guy" {
 
 }
 
+# Attach my virtusl network
 resource "azurerm_private_dns_zone_virtual_network_link" "guy" {
   name                  = "GuynetZone.com"
   private_dns_zone_name = azurerm_private_dns_zone.guy.name
@@ -24,6 +25,7 @@ resource "azurerm_private_dns_zone_virtual_network_link" "guy" {
 
 }
 
+# # Create flexible server
 resource "azurerm_postgresql_flexible_server" "guy" {
   name                   = "guy-psqlflexibleserver"
   resource_group_name    = var.resource_group_name
