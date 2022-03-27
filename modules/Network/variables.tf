@@ -11,8 +11,5 @@ variable "my_region" {
   default     = "eastus"
 }
 
-variable "SSH_MachineIPDB" {
-  description = "IP of bastion machine that can ssh to db "
-}
 
 

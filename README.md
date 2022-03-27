@@ -10,6 +10,11 @@
 
 
 
+
+### Run the infrastructure from the root module which will use the sub modules.
+
+### You can use *.tfvars file with variable Password to run it.
+
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
@@ -29,6 +34,7 @@ No providers.
 | <a name="module_LoadBalancer"></a> [LoadBalancer](#module\_LoadBalancer) | ./modules/LoadBalancer | n/a |
 | <a name="module_ManagedDB"></a> [ManagedDB](#module\_ManagedDB) | ./modules/ManagedDB | n/a |
 | <a name="module_Network"></a> [Network](#module\_Network) | ./modules/Network | n/a |
+| <a name="module_ScaleSet"></a> [ScaleSet](#module\_ScaleSet) | ./modules/ScaleSet | n/a |
 | <a name="module_VirtualMachines"></a> [VirtualMachines](#module\_VirtualMachines) | ./modules/ApplicationServer | n/a |
 
 ## Resources
