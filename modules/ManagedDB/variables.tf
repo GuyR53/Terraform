@@ -23,6 +23,6 @@ variable "DBSubnet" {
 variable "Password" {
   type = string
   description = "Password for db"
-  default = ""
+  default = "ItsNotTheRealPassword!123"
 
 }

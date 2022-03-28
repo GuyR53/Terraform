@@ -22,7 +22,7 @@ variable "AppSubnetID" {
 variable "Password" {
   type = string
   description = "Password for vm"
-  default = ""
+  default = "ItsNotTheRealPassword!123"
 
 }
 

@@ -43,6 +43,3 @@ operations/variable-scripts/variable.json
 # Sentinel runtime directory
 .sentinel
 
-# My files
-password.txt
-PrepareMachine.sh
