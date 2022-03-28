@@ -45,5 +45,5 @@ operations/variable-scripts/variable.json
 
 # My files
 password.txt
-PrepareMachine.sh
+modules/*/PrepareMachine.sh
 terraform.tfvars
