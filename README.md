@@ -1,6 +1,6 @@
 # TerraformWeek5
 
-## Goal:
+## Goals:
 
 <img width="542" alt="Screen Shot 2022-03-28 at 11 54 09" src="https://user-images.githubusercontent.com/93793111/160362958-ad89d339-d94d-4fce-995e-891e3160b7e6.png">
 
